@@ -11,7 +11,7 @@
         android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#acd64e">
+        android:background="#d4ff70">
 
     </RelativeLayout>
 
