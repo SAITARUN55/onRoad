@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1064860563234",
+    "firebase_url": "https://onroad-23910.firebaseio.com",
+    "project_id": "onroad-23910",
+    "storage_bucket": "onroad-23910.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064860563234:android:84be37f677345922",
+        "android_client_info": {
+          "package_name": "com.bdp.onroad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064860563234-3h7t8slo71ld26tqckkhli6vrn0mocju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bdp.onroad",
+            "certificate_hash": "66578fee2ef73ee975bce5e464bc74722f9a429b"
+          }
+        },
+        {
+          "client_id": "1064860563234-htp8qjm401vd19sa6dbas9tr9g8kvtoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzwGeaaSWqfkSF9O0iaV8-q-ORSFRr0w4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064860563234-htp8qjm401vd19sa6dbas9tr9g8kvtoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

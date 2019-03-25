@@ -1,4 +1,4 @@
-package com.example.onroad;
+package com.bdp.onroad;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
