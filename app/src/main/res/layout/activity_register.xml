@@ -96,6 +96,7 @@
 
     </android.support.design.widget.TextInputLayout>
 
+
     <Button
         android:id="@+id/register_sign_up_button"
         style="?android:textAppearanceMedium"

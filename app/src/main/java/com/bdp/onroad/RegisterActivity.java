@@ -141,7 +141,8 @@ public class RegisterActivity extends AppCompatActivity
         Log.d("NewUserHas:",email +pass);
         mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onComplete(@NonNull Task<AuthResult> task)
+            {
                 Log.d("hey","createUser onComplete:"+task.isSuccessful());
                 if(!task.isSuccessful())
                 {

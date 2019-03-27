@@ -21,4 +21,6 @@
     <string name="sample_message">Hello!</string>
     <string name="as_driver">Use as driver</string>
     <string name="as_rider">Use as rider</string>
+    <string name="prompt_contact_number">Contact Number</string>
+    s
 </resources>

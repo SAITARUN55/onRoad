@@ -16,7 +16,7 @@
         android:id="@+id/justforfun1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DRIVER:MANDIR WAHIN BANEGA! XD"
+        android:text="@string/mandir"
         android:textSize="50dp" />
 
 </LinearLayout>
