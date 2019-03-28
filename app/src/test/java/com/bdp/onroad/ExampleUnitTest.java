@@ -1,4 +1,4 @@
-package com.example.onroad;
+package com.bdp.onroad;
 
 import org.junit.Test;
 
