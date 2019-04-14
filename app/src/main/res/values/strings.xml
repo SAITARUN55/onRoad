@@ -24,4 +24,6 @@
     <string name="prompt_contact_number">Contact Number</string>
     <string name="prompt_destination">Where you\'d be going...</string>
     <string name="loginText">Welcome to onRoad!</string>
+    <string name="please_login_to_continue">Please Login to continue</string>
+    <string name="please_register_with_us_to_continue">Please Register with us to continue</string>
 </resources>
