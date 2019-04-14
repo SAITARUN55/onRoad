@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    android:gravity="top"
+    android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -15,7 +15,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/white">
+        android:textColorHint="@color/logingrey">
 
         <AutoCompleteTextView
             android:id="@+id/register_username"
@@ -25,7 +25,7 @@
             android:imeOptions="actionNext"
             android:inputType="textNoSuggestions"
             android:maxLines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textColorHint="@color/white"
             android:textIsSelectable="false"
             android:textSize="25sp"
@@ -36,7 +36,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/white">
+        android:textColorHint="@color/logingrey">
 
         <AutoCompleteTextView
             android:id="@+id/register_email"
@@ -46,7 +46,7 @@
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textColorHint="@color/white"
             android:textIsSelectable="false"
             android:textSize="25sp"
@@ -57,7 +57,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/white">
+        android:textColorHint="@color/logingrey">
 
         <EditText
             android:id="@+id/register_password"
@@ -67,7 +67,7 @@
             android:imeOptions="actionNext"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textColorHint="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -77,7 +77,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/white">
+        android:textColorHint="@color/logingrey">
 
         <EditText
             android:id="@+id/register_confirm_password"
