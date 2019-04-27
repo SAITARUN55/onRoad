@@ -22,8 +22,14 @@
     <string name="as_driver">Use as driver</string>
     <string name="as_rider">Use as rider</string>
     <string name="prompt_contact_number">Contact Number</string>
-    <string name="prompt_destination">Where you\'d be going...</string>
+    <string name="prompt_destination">Destination...</string>
     <string name="loginText">Welcome to onRoad!</string>
     <string name="please_login_to_continue">Please Login to continue</string>
     <string name="please_register_with_us_to_continue">Please Register with us to continue</string>
+    <string name="prompt_starting_place">Starting Place</string>
+    <string name="prompt_no_of_seats">No. Of Seats</string>
+    <string name="prompt_starting_time">Starting Time</string>
+    <string name="prompt_phone"></string>
+
+
 </resources>

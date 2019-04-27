@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 
 public class RegisterActivity extends AppCompatActivity
@@ -151,7 +153,8 @@ public class RegisterActivity extends AppCompatActivity
                 }
                 else
                 {
-                    saveDisplayNameLocally();
+                    //saveDisplayNameLocally();
+                    saveDisplayNameOnDataBase();
                     Intent intnt = new Intent(RegisterActivity.this, LoginActivity.class);
                     finish();
                     startActivity(intnt);
@@ -166,6 +169,28 @@ public class RegisterActivity extends AppCompatActivity
         String DispName=mUsernameView.getText().toString();
         SharedPreferences pref=getSharedPreferences(CHAT_PREFS,0);
         pref.edit().putString(DISPLAY_NAME_KEY,DispName).apply();
+
+    }
+    private void saveDisplayNameOnDataBase()
+    {
+        FirebaseUser user = mAuth.getCurrentUser();
+        String name=mUsernameView.getText().toString();
+        if(user!=null)
+        {
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(name)
+                    .build();
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("hey", "User name saved to database with authenticated ID.");
+                            }
+                        }
+                    });
+        }
+
 
     }
 
