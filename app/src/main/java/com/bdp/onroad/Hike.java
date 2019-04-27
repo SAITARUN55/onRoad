@@ -2,16 +2,16 @@ package com.bdp.onroad;
 
 public class Hike
 {
-   private String mName,mstartingTime,mstartingPlace,mDestination,mNoOfSeats,mContactNumber;
+   private String mName, mstartingTime , mstartingPlace , mDestination ,mNoOfSeats,mContactNumber;
 
-    public Hike(String name, String startingTime, String startingPlace, String destination, String noOfSeats, String contactNumber)
+    public Hike(String mName, String mstartingTime, String mstartingPlace, String mDestination, String mNoOfSeats, String mContactNumber)
     {
-        this.mName = name;
-        this.mstartingTime = startingTime;
-        this.mstartingPlace = startingPlace;
-        this.mDestination = destination;
-        this.mNoOfSeats = noOfSeats;
-        this.mContactNumber=contactNumber;
+        this.mName = mName;
+        this.mstartingTime = mstartingTime;
+        this.mstartingPlace = mstartingPlace;
+        this.mDestination =mDestination;
+        this.mNoOfSeats = mNoOfSeats;
+        this.mContactNumber=mContactNumber;
     }
     // for firebase an empty constructor
 
@@ -19,32 +19,32 @@ public class Hike
 
     // getters
 
-    public String getName()
+    public String getmName()
     {
         return mName;
     }
 
-    public String getMstartingTime()
+    public String getmStartingTime()
     {
         return mstartingTime;
     }
 
-    public String getMstartingPlace()
+    public String getmStartingPlace()
     {
         return mstartingPlace;
     }
 
-    public String getDestination()
+    public String getmDestination()
     {
         return mDestination;
     }
 
-    public String getNoOfSeats()
+    public String getmNoOfSeats()
     {
         return mNoOfSeats;
     }
 
-    public String getContactNumber()
+    public String getmContactNumber()
     {
         return mContactNumber;
     }
