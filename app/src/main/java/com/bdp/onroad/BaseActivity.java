@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -26,17 +27,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-
-public class UserTypeActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+    protected DrawerLayout mDrawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usertype);
-        dl = (DrawerLayout)findViewById(R.id.activity_usertype);
+        setContentView(R.layout.activity_base);
+        dl = (DrawerLayout)findViewById(R.id.activity_base);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         t = new ActionBarDrawerToggle(this, dl,R.string.app_name, R.string.about_us);
 
         dl.addDrawerListener(t);
@@ -46,22 +48,22 @@ public class UserTypeActivity extends AppCompatActivity {
 
         nv = (NavigationView)findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-        @Override
+            @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch(id)
                 {
                     case R.id.nav_home:
-                        Toast.makeText(UserTypeActivity.this, "Home",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(BaseActivity.this, "Home",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_aboutUs:
-                        Toast.makeText(UserTypeActivity.this, "About Us",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(BaseActivity.this, "About Us",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_profile:
-                        Toast.makeText(UserTypeActivity.this, "Profile",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(BaseActivity.this, "Profile",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_logout:
                         FirebaseAuth.getInstance().signOut();
-                        Intent I = new Intent(UserTypeActivity.this, LoginActivity.class);
+                        Intent I = new Intent(BaseActivity.this, LoginActivity.class);
                         startActivity(I);
-                        Toast.makeText(UserTypeActivity.this, "Logged You Out",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BaseActivity.this, "Logged You Out",Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         return true;
@@ -70,7 +72,6 @@ public class UserTypeActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -78,22 +79,5 @@ public class UserTypeActivity extends AppCompatActivity {
             return true;
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void setUserDriver(View V)
-    {
-        Intent intnt = new Intent(UserTypeActivity.this, UserDriverActivity.class);
-        finish();
-        startActivity(intnt);
-        Log.d("hey","User is Driver") ;
-    }
-
-    public void setUserRider(View V)
-    {
-
-        Intent intnt = new Intent(UserTypeActivity.this, UserRiderActivity.class);
-        finish();
-        startActivity(intnt);
-        Log.d("hey","User is Rider") ;
     }
 }

@@ -206,5 +206,10 @@ public class RegisterActivity extends AppCompatActivity
                 .show();
     }
 
-
+    public void SignInUser(View v)
+    {
+        Intent intent = new Intent(this, com.bdp.onroad.LoginActivity.class);
+        finish();
+        startActivity(intent);
+    }
 }
