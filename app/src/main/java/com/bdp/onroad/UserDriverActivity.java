@@ -57,11 +57,11 @@ public class UserDriverActivity  extends AppCompatActivity//FragmentActivity imp
         String name = user.getDisplayName();
         String startingTime=mstartingTime.getText().toString();
         String startingPlace=mstartingPlace.getText().toString();
-        String destination=mDestination.getText().toString();
+        String stination=mDestination.getText().toString();
         String noOfSeats=mNoOfSeats.getText().toString();
         String contactNumber=mContactNumber.getText().toString();
         //  TODO:   Get Contact Number From DataBase and remove from here and from activity_user_driver layout form
-        if(TextUtils.isEmpty(name)||TextUtils.isEmpty(startingTime)||TextUtils.isEmpty(destination)||TextUtils.isEmpty(startingPlace)||TextUtils.isEmpty(noOfSeats)||TextUtils.isEmpty(contactNumber))
+        if(TextUtils.isEmpty(name)||TextUtils.isEmpty(startingTime)||TextUtils.isEmpty(stination)||TextUtils.isEmpty(startingPlace)||TextUtils.isEmpty(noOfSeats)||TextUtils.isEmpty(contactNumber))
         {
             Log.d("hey","HIKE Form not completely filled!!!!!!");
             new AlertDialog.Builder(this)
@@ -73,10 +73,10 @@ public class UserDriverActivity  extends AppCompatActivity//FragmentActivity imp
         }
         else
         {
-            Hike myNewHike = new Hike(name,startingTime,startingPlace,destination,noOfSeats,contactNumber);
+            Hike myNewHike = new Hike(name,startingTime,startingPlace,stination,noOfSeats,contactNumber);
             mDatabaseRefrence.child("Hike").push().setValue(myNewHike);
 
-            //TODO: Set init to diffrent activity do not let Driver make the same hike again!
+            //TODO: Set init to different activity do not let Driver make the same hike again!
 
         }
 

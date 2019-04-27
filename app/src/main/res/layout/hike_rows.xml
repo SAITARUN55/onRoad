@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/singleMessageContainer"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/destinationOfHike"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="start"
+        android:textColor="@color/green"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="Destination Goes Here"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/timeOfHike"
+        android:layout_width="233dp"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="5dip"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="time Goes here"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/numberOfSeatsOfHike"
+        android:layout_width="233dp"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="5dip"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Seat Number goes here"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/startingPlaceOfHike"
+        android:layout_width="233dp"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="5dip"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Place of starting goes here"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/driverNameOfHike"
+        android:layout_width="233dp"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="5dip"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Driver Name Goes Here"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/contactNumberOfHike"
+        android:layout_width="233dp"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="5dip"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Driver Contact Number Goes Here"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="15sp" />
+
+
+
+</LinearLayout>

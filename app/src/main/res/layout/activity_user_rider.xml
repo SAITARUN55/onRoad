@@ -1,22 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/yellow"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/light_purple"
+    tools:context="com.bdp.onroad.UserRiderActivity">
 
-
-    <TextView
-        android:id="@+id/justforfun1"
-        android:layout_width="match_parent"
+    <ListView
+        android:id="@+id/hike_list_view"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="RIDER:MANDIR WAHIN BANEGA! XD"
-        android:textSize="50dp" />
+        android:layout_above="@+id/listFooter"
+        android:layout_alignParentTop="true"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:transcriptMode="alwaysScroll" />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/listFooter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+    </LinearLayout>
+
+
+</RelativeLayout>

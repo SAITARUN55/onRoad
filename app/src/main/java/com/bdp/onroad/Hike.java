@@ -2,16 +2,17 @@ package com.bdp.onroad;
 
 public class Hike
 {
-   private String mName, mstartingTime , mstartingPlace , mDestination ,mNoOfSeats,mContactNumber;
 
-    public Hike(String mName, String mstartingTime, String mstartingPlace, String mDestination, String mNoOfSeats, String mContactNumber)
+   private String mName,mStartingTime,mStartingPlace,mDestination,mNoOfSeats,mContactNumber;
+
+    public Hike(String name, String startingTime, String startingPlace, String estination, String noOfSeats, String contactNumber)
     {
-        this.mName = mName;
-        this.mstartingTime = mstartingTime;
-        this.mstartingPlace = mstartingPlace;
-        this.mDestination =mDestination;
-        this.mNoOfSeats = mNoOfSeats;
-        this.mContactNumber=mContactNumber;
+        this.mName = name;
+        this.mStartingTime = startingTime;
+        this.mStartingPlace = startingPlace;
+        this.mDestination = estination;
+        this.mNoOfSeats = noOfSeats;
+        this.mContactNumber=contactNumber;
     }
     // for firebase an empty constructor
 
@@ -26,12 +27,12 @@ public class Hike
 
     public String getmStartingTime()
     {
-        return mstartingTime;
+        return mStartingTime;
     }
 
     public String getmStartingPlace()
     {
-        return mstartingPlace;
+        return mStartingPlace;
     }
 
     public String getmDestination()
