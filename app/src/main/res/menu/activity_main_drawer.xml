@@ -11,6 +11,12 @@
             android:id="@+id/nav_profile"
             android:title="@string/prolile" />
         <item
+            android:id="@+id/nav_rides"
+            android:title="@string/rides" />
+        <item
+            android:id="@+id/nav_ridereqs"
+            android:title="@string/ride_requests" />
+        <item
             android:id="@+id/nav_aboutUs"
             android:title="@string/about_us" />
         <item

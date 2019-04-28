@@ -1,5 +1,6 @@
 package com.bdp.onroad;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
@@ -25,7 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class UserRiderActivity extends AppCompatActivity
+public class UserRiderActivity extends BaseActivity
 {
     private HikeListAdapter mAdapter;
     private DatabaseReference mDatabaseRefrence;
@@ -35,7 +37,11 @@ public class UserRiderActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_rider);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //inflate your activity layout here!
+        View contentView = inflater.inflate(R.layout.activity_user_rider, null, false);
+        dl.addView(contentView, 0);
+
         mDatabaseRefrence= FirebaseDatabase.getInstance().getReference();
         mHikeListView=(ListView) findViewById(R.id.hike_list_view);
     }

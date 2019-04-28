@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bdp.onroad.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -156,8 +157,9 @@ public class RegisterActivity extends AppCompatActivity
                     //saveDisplayNameLocally();
                     saveDisplayNameOnDataBase();
                     Intent intnt = new Intent(RegisterActivity.this, LoginActivity.class);
-                    finish();
                     startActivity(intnt);
+                    onBackPressed();
+                    finish();
                 }
             }
         });
@@ -209,7 +211,8 @@ public class RegisterActivity extends AppCompatActivity
     public void SignInUser(View v)
     {
         Intent intent = new Intent(this, com.bdp.onroad.LoginActivity.class);
-        finish();
         startActivity(intent);
+        onBackPressed();
+        finish();
     }
 }

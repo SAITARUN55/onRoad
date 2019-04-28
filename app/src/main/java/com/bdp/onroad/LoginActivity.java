@@ -76,8 +76,9 @@ public class LoginActivity extends AppCompatActivity {
     public void registerNewUser(View v)
     {
         Intent intent = new Intent(this, com.bdp.onroad.RegisterActivity.class);
-        finish();
         startActivity(intent);
+        onBackPressed();
+        finish();
     }
 
 
@@ -110,8 +111,10 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Log.d("hey","SignedIn Successfully");
                     Intent intnt = new Intent(LoginActivity.this, UserTypeActivity.class);
-                    finish();
                     startActivity(intnt);
+
+                    onBackPressed();
+                    finish();
                 }
             }
         });

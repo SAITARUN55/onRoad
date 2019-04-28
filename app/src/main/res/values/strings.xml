@@ -36,6 +36,8 @@
     <string name="home">Home</string>
     <string name="prolile">Prolile</string>
     <string name="about_us">About Us</string>
+    <string name="rides">Rides Available</string>
+    <string name="ride_requests">Ride Requests</string>
     <string name="logout">LogOut</string>
 
 </resources>

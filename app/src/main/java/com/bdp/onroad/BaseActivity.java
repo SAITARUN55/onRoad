@@ -28,42 +28,58 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class BaseActivity extends AppCompatActivity {
-
-    private DrawerLayout dl;
+    protected DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    protected DrawerLayout mDrawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
-        dl = (DrawerLayout)findViewById(R.id.activity_base);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        t = new ActionBarDrawerToggle(this, dl,R.string.app_name, R.string.about_us);
+//        setContentView(R.layout.base_layout);
+        setContentView(R.layout.activity_base);
+        dl = (DrawerLayout) findViewById(R.id.activity_base);
+        t = new ActionBarDrawerToggle(this, dl, R.string.app_name, R.string.about_us);
 
         dl.addDrawerListener(t);
         t.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nv = (NavigationView)findViewById(R.id.nv);
+        nv = (NavigationView) findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                switch(id)
-                {
+                switch (id) {
                     case R.id.nav_home:
-                        Toast.makeText(BaseActivity.this, "Home",Toast.LENGTH_SHORT).show();break;
+                        Intent I = new Intent(BaseActivity.this, UserTypeActivity.class);
+                        startActivity(I);
+                        onBackPressed();
+                        finish();
+                        Toast.makeText(BaseActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.nav_aboutUs:
-                        Toast.makeText(BaseActivity.this, "About Us",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(BaseActivity.this, "About Us", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.nav_profile:
-                        Toast.makeText(BaseActivity.this, "Profile",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(BaseActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.nav_rides:
+                        startActivity(new Intent(BaseActivity.this, UserRiderActivity.class));
+                        onBackPressed();
+                        finish();
+                        Toast.makeText(BaseActivity.this, "Rides Available", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.nav_ridereqs:
+                        Toast.makeText(BaseActivity.this, "RideRequesta", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.nav_logout:
                         FirebaseAuth.getInstance().signOut();
-                        Intent I = new Intent(BaseActivity.this, LoginActivity.class);
-                        startActivity(I);
-                        Toast.makeText(BaseActivity.this, "Logged You Out",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(BaseActivity.this, LoginActivity.class));
+                        onBackPressed();
+                        finish();
+                        Toast.makeText(BaseActivity.this, "Logged You Out", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         return true;
@@ -72,10 +88,11 @@ public class BaseActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(t.onOptionsItemSelected(item))
+        if (t.onOptionsItemSelected(item))
             return true;
 
         return super.onOptionsItemSelected(item);
