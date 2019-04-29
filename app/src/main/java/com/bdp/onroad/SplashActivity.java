@@ -14,7 +14,7 @@ import com.bdp.onroad.R;
 public class SplashActivity extends AppCompatActivity {
 
     private TextView logo;
-    private static int splashTimeOut=3000;
+    private static int splashTimeOut=1000;// TODO: set back to 3000
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

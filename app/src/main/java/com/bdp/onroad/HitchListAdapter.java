@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
-public class HikeListAdapter extends BaseAdapter
+public class HitchListAdapter extends BaseAdapter
 {
     private Activity mActivity;
     private DatabaseReference mDatabaseReference;
@@ -64,10 +67,12 @@ public class HikeListAdapter extends BaseAdapter
     };
 
     // Let us make some constructor!!!!!
-    public HikeListAdapter(Activity activity, DatabaseReference ref)
+    public HitchListAdapter(Activity activity, DatabaseReference ref)
     {
         mActivity=activity;
-        mDatabaseReference=ref.child("Hike");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email=user.getEmail();
+        mDatabaseReference=ref.child("hitch").child(alterToMakeFBPath(email));
         mDatabaseReference.addChildEventListener(mChildEventListener);
         mSnapShotList= new ArrayList<>();
     }
@@ -75,8 +80,8 @@ public class HikeListAdapter extends BaseAdapter
     // Inner class to display rows better
     static class ViewHolder
     {
-        TextView destinationTextView,timeTextView,seatNumberTextView,startPlaceTextView,driverNameTextView,contactTextView;
-        LinearLayout LinearHikeRow;
+        TextView riderNameTextView,riderEmailTextView,ridercontactTextView;
+        LinearLayout LinearHitchRow;
         LinearLayout.LayoutParams params;
     }
 
@@ -87,10 +92,10 @@ public class HikeListAdapter extends BaseAdapter
     }
 
     @Override
-    public Hike getItem(int position)
+    public Hitch getItem(int position)
     {
         DataSnapshot snapshot=mSnapShotList.get(position);
-        return snapshot.getValue(Hike.class);
+        return snapshot.getValue(Hitch.class);
     }
 
     @Override
@@ -105,48 +110,30 @@ public class HikeListAdapter extends BaseAdapter
         if(convertView==null)
         {
             LayoutInflater inflater=(LayoutInflater)mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView=inflater.inflate(R.layout.hike_rows,parent,false);
+            convertView=inflater.inflate(R.layout.hitch_rows,parent,false);
             final ViewHolder holder= new ViewHolder();
-            holder.destinationTextView=(TextView) convertView.findViewById(R.id.destinationOfHike);
-            holder.timeTextView=(TextView)convertView.findViewById(R.id.timeOfHike);
-            holder.seatNumberTextView=(TextView)convertView.findViewById(R.id.numberOfSeatsOfHike);
-            holder.startPlaceTextView=(TextView)convertView.findViewById(R.id.startingPlaceOfHike);
-            holder.driverNameTextView=(TextView)convertView.findViewById(R.id.driverNameOfHike);
-            holder.LinearHikeRow=(LinearLayout)convertView.findViewById(R.id.singleHikeInfoContainer);
-            holder.contactTextView=(TextView)convertView.findViewById(R.id.contactNumberOfHike);
-            holder.params=(LinearLayout.LayoutParams)holder.destinationTextView.getLayoutParams();
+            holder.riderNameTextView=(TextView) convertView.findViewById(R.id.riderName);
+            holder.riderEmailTextView=(TextView)convertView.findViewById(R.id.riderEmail);
+            holder.ridercontactTextView=(TextView)convertView.findViewById(R.id.riderContactNumber);
+
+            holder.LinearHitchRow=(LinearLayout)convertView.findViewById(R.id.singleHitchInfoContainer);
+
+            holder.params=(LinearLayout.LayoutParams)holder.riderEmailTextView.getLayoutParams();
             convertView.setTag(holder);
         }
-        final Hike hike=getItem(position);
+        final Hitch hitch=getItem(position);
         final ViewHolder holder =(ViewHolder)convertView.getTag();
 
-        //boolean isMe=message.getAuthor().equals(mDisplayName);
-        //setChatRowAppearance(isMe,holder);
         setChatRowAppearance(holder);
 
-//        //
-//        String author=message.getAuthor();
-//        holder.authorName.setText(author);
-//
-//        String msg=message.getMessage();
-//        holder.body.setText(msg);
-        String destination=hike.getmDestination();
-        holder.destinationTextView.setText(destination);
+        String ridername=hitch.getmName();
+        holder.riderNameTextView.setText(ridername);
 
-        String time=hike.getmStartingTime();
-        holder.timeTextView.setText(time);
+        String rideremail=hitch.getmEmail();
+        holder.riderEmailTextView.setText(rideremail);
 
-        String seats=hike.getmNoOfSeats();
-        holder.seatNumberTextView.setText(seats);
-
-        String startPlace = hike.getmStartingPlace();
-        holder.startPlaceTextView.setText(startPlace);
-
-        String driverName = hike.getmName();
-        holder.driverNameTextView.setText(driverName);
-
-        String contactNumber = hike.getmContactNumber();
-        holder.contactTextView.setText(contactNumber);
+        String contact=hitch.getmContactNumber();
+        holder.ridercontactTextView.setText(contact);
 
         return convertView;
     }
@@ -154,18 +141,31 @@ public class HikeListAdapter extends BaseAdapter
     private void setChatRowAppearance(ViewHolder holder)
     {
         holder.params.gravity= Gravity.START;
-        holder.LinearHikeRow.setBackgroundResource(R.drawable.bubble1);
-        holder.destinationTextView.setLayoutParams(holder.params);
-        holder.timeTextView.setLayoutParams(holder.params);
-        holder.seatNumberTextView.setLayoutParams(holder.params);
-        holder.startPlaceTextView.setLayoutParams(holder.params);
-        holder.driverNameTextView.setLayoutParams(holder.params);
-        holder.contactTextView.setLayoutParams(holder.params);
-        holder.LinearHikeRow.setLayoutParams(holder.params);
+        holder.LinearHitchRow.setBackgroundResource(R.drawable.bubble2);
+        holder.riderNameTextView.setLayoutParams(holder.params);
+        holder.riderEmailTextView.setLayoutParams(holder.params);
+        holder.ridercontactTextView.setLayoutParams(holder.params);
+        holder.LinearHitchRow.setLayoutParams(holder.params);
     }
     public void cleanUp()
     {
         mDatabaseReference.removeEventListener(mChildEventListener);
     }
-}
 
+    // Helper Functions:
+    private String alterToMakeFBPath(String str)
+    {
+        Log.d("hey","got here");
+        String ret="";
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)=='.'||str.charAt(i)=='#'||str.charAt(i)=='$'||str.charAt(i)=='['||str.charAt(i)==']')
+                ret+='_';
+
+            else
+                ret+=str.charAt(i);
+
+        }
+        return ret;
+    }
+}
