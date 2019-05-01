@@ -105,4 +105,13 @@ public class UserRiderActivity extends BaseActivity
         // TODO: Remove the Firebase event listener on the adapter.
 
     }
+
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(UserRiderActivity.this, UserTypeActivity.class));
+        finish();
+    }
 }

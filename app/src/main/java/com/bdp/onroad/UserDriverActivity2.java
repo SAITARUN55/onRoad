@@ -63,4 +63,12 @@ public class UserDriverActivity2 extends AppCompatActivity
         // TODO: Remove the Firebase event listener on the adapter.
 
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(UserDriverActivity2.this, UserDriverActivity.class));
+        finish();
+    }
 }

@@ -1,6 +1,7 @@
 package com.bdp.onroad;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,17 +46,38 @@ public class UserTypeActivity extends BaseActivity {
     {
         Intent intnt = new Intent(UserTypeActivity.this, UserDriverActivity.class);
         startActivity(intnt);
-        onBackPressed();
         finish();
         Log.d("hey","User is Driver") ;
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Exit");
+        builder.setMessage("Are you sure you want to exit the app?");
+        builder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     public void setUserRider(View V)
     {
-
         Intent intnt = new Intent(UserTypeActivity.this, UserRiderActivity.class);
         startActivity(intnt);
-        onBackPressed();
         finish();
         Log.d("hey","User is Rider") ;
     }

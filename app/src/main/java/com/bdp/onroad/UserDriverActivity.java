@@ -93,16 +93,19 @@ public class UserDriverActivity  extends BaseActivity//FragmentActivity implemen
 
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(UserDriverActivity.this, UserTypeActivity.class));
+        finish();
+    }
 
+/*   @Override
+    public void onMapReady(GoogleMap googleMap)
+    {
 
-
-
-//    @Override
-//    public void onMapReady(GoogleMap googleMap)
-//    {
-//
-//
-//
-//    }
+   }
+*/
 
 }
