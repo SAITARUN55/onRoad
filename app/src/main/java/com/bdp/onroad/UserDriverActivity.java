@@ -17,6 +17,12 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 import com.bdp.onroad.LoginActivity;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,6 +38,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class UserDriverActivity  extends BaseActivity//FragmentActivity implements OnMapReadyCallback
 {
+
+    Date date1 = new Date();
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private String date = dateFormat.format(date1);
 
     private AutoCompleteTextView mstartingTime,mstartingPlace,mDestination,mNoOfSeats,mContactNumber;
     private DatabaseReference mDatabaseRefrence;
@@ -80,8 +90,8 @@ public class UserDriverActivity  extends BaseActivity//FragmentActivity implemen
         else
         {
             Hike myNewHike = new Hike(name,startingTime,startingPlace,stination,noOfSeats,contactNumber,email);
-            mDatabaseRefrence.child("Hike").push().setValue(myNewHike);
 
+            mDatabaseRefrence.child(date).child("Hikes").child(contactNumber).push().setValue(myNewHike);
 
             // switching to userdriver activity 2
             //TODO: add if push not successful error case!!!!!!!!!!!!!!!!!!!!!!

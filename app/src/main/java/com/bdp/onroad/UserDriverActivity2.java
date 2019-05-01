@@ -1,5 +1,6 @@
 package com.bdp.onroad;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -63,12 +64,29 @@ public class UserDriverActivity2 extends AppCompatActivity
         // TODO: Remove the Firebase event listener on the adapter.
 
     }
-
     @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
-        startActivity(new Intent(UserDriverActivity2.this, UserDriverActivity.class));
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Confirmation");
+        builder.setMessage("Are you sure you want to delete your request?");
+        builder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        finish();
+                    }
+                });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
+
 }
