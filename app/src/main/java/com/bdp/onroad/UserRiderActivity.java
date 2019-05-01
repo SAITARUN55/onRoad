@@ -1,37 +1,22 @@
 package com.bdp.onroad;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import com.bdp.onroad.LoginActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class UserRiderActivity extends BaseActivity
@@ -76,29 +61,10 @@ public class UserRiderActivity extends BaseActivity
                 Hitch myNewHitch= new Hitch(name,email,ContactNumber,hike.getmDriverEmail());
                 mDatabaseRefrence.child(date).child("Hitches").child(ContactNumber).push().setValue(myNewHitch);
 
-                // display_info(hike.getmName());
             }
         });
 
     }
-
-//    public void display_info(String name){
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setCancelable(true);
-//        builder.setTitle("Info");
-//        String message="So you wanna ride with "+name;
-//        builder.setMessage(message);
-//        builder.setPositiveButton("OK",
-//                new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-//    }
 
     private String alterToMakeFBPath(String str)
     {
