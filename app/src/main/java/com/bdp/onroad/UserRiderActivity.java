@@ -30,12 +30,16 @@ public class UserRiderActivity extends BaseActivity
     private HikeListAdapter mAdapter;
     private DatabaseReference mDatabaseRefrence;
     private ListView mHikeListView;
+    public String Destination;
    // private LinearLayout mSingleHikeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        Destination=extras.getString("destination");
+
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //inflate your activity layout here!
         View contentView = inflater.inflate(R.layout.activity_user_rider, null, false);
@@ -62,7 +66,7 @@ public class UserRiderActivity extends BaseActivity
                 String email= user.getEmail();
                 String ContactNumber="SOME PHONE NUMBER";
                 Hitch myNewHitch= new Hitch(name,email,ContactNumber,hike.getmDriverEmail());
-                mDatabaseRefrence.child(date).child("Hitches").child(ContactNumber).push().setValue(myNewHitch);
+                mDatabaseRefrence.child("Hitches").child(date).child(alterToMakeFBPath(hike.getmDriverEmail())).push().setValue(myNewHitch);
 
             }
         });
@@ -89,6 +93,8 @@ public class UserRiderActivity extends BaseActivity
     public void onStart()
     {
         super.onStart();
+        mAdapter = new HikeListAdapter(this, mDatabaseRefrence,Destination);
+        mHikeListView.setAdapter(mAdapter);
 
     }
 
@@ -100,25 +106,25 @@ public class UserRiderActivity extends BaseActivity
         // TODO: Remove the Firebase event listener on the adapter.
 
     }
-    public void searchDestination(View v)
-    {
-        String destination=mDestinationSearchText.getText().toString();
-        if(destination=="")
-        {
-            new AlertDialog.Builder(this)
-                    .setTitle("Waoh")
-                    .setMessage("Enter Something to Search!")
-                    .setPositiveButton(android.R.string.ok,null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-        }
-        else
-        {
-            mAdapter = new HikeListAdapter(this, mDatabaseRefrence,destination);
-            mHikeListView.setAdapter(mAdapter);
-        }
-
-    }
+//    public void searchDestination(View v)
+//    {
+//        String destination=mDestinationSearchText.getText().toString();
+//        if(destination=="")
+//        {
+//            new AlertDialog.Builder(this)
+//                    .setTitle("Waoh")
+//                    .setMessage("Enter Something to Search!")
+//                    .setPositiveButton(android.R.string.ok,null)
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .show();
+//        }
+//        else
+//        {
+//            mAdapter = new HikeListAdapter(this, mDatabaseRefrence,destination);
+//            mHikeListView.setAdapter(mAdapter);
+//        }
+//
+//    }
 
 
     @Override

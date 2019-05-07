@@ -23,10 +23,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HitchListAdapter extends BaseAdapter
 {
+
+    Date date1 = new Date();
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private String date = dateFormat.format(date1);
     private Activity mActivity;
     private DatabaseReference mDatabaseReference;
 
@@ -72,7 +79,7 @@ public class HitchListAdapter extends BaseAdapter
         mActivity=activity;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String email=user.getEmail();
-        mDatabaseReference=ref.child("hitch").child(alterToMakeFBPath(email));
+        mDatabaseReference=ref.child("Hitches").child(date).child(alterToMakeFBPath(email));
         mDatabaseReference.addChildEventListener(mChildEventListener);
         mSnapShotList= new ArrayList<>();
     }
