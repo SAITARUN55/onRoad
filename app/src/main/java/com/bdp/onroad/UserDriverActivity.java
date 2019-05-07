@@ -56,11 +56,11 @@ public class UserDriverActivity  extends BaseActivity//FragmentActivity implemen
         String email=user.getEmail();
         String startingTime=mstartingTime.getText().toString();
         String startingPlace=mstartingPlace.getText().toString();
-        String stination=mDestination.getText().toString();
+        String destination=mDestination.getText().toString();
         String noOfSeats=mNoOfSeats.getText().toString();
         String contactNumber=mContactNumber.getText().toString();
         //  TODO:   Get Contact Number From DataBase and remove from here and from activity_user_driver layout form
-        if(TextUtils.isEmpty(name)||TextUtils.isEmpty(email)||TextUtils.isEmpty(startingTime)||TextUtils.isEmpty(stination)||TextUtils.isEmpty(startingPlace)||TextUtils.isEmpty(noOfSeats)||TextUtils.isEmpty(contactNumber))
+        if(TextUtils.isEmpty(name)||TextUtils.isEmpty(email)||TextUtils.isEmpty(startingTime)||TextUtils.isEmpty(destination)||TextUtils.isEmpty(startingPlace)||TextUtils.isEmpty(noOfSeats)||TextUtils.isEmpty(contactNumber))
         {
             Log.d("hey","HIKE Form not completely filled!!!!!!");
             new AlertDialog.Builder(this)
@@ -72,9 +72,10 @@ public class UserDriverActivity  extends BaseActivity//FragmentActivity implemen
         }
         else
         {
-            Hike myNewHike = new Hike(name,startingTime,startingPlace,stination,noOfSeats,contactNumber,email);
+            Hike myNewHike = new Hike(name,startingTime,startingPlace,destination,noOfSeats,contactNumber,email);
+            Log.d("hey","The destination you pushed:"+destination.replaceAll("\\s+","").toLowerCase());
 
-            mDatabaseRefrence.child(date).child("Hikes").child(contactNumber).push().setValue(myNewHike);
+            mDatabaseRefrence.child("Hikes").child(date).child(alterToMakeFBPath(destination.replaceAll("\\s+","").toLowerCase())).push().setValue(myNewHike);
 
             // switching to userdriver activity 2
             //TODO: add if push not successful error case!!!!!!!!!!!!!!!!!!!!!!
@@ -84,6 +85,21 @@ public class UserDriverActivity  extends BaseActivity//FragmentActivity implemen
 
         }
 
+    }
+    private String alterToMakeFBPath(String str)
+    {
+        Log.d("hey","got here");
+        String ret="";
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)=='.'||str.charAt(i)=='#'||str.charAt(i)=='$'||str.charAt(i)=='['||str.charAt(i)==']')
+                ret+='_';
+
+            else
+                ret+=str.charAt(i);
+
+        }
+        return ret;
     }
 
     @Override

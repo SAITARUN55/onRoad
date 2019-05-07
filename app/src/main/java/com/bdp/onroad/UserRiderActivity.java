@@ -3,10 +3,12 @@ package com.bdp.onroad;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +26,7 @@ public class UserRiderActivity extends BaseActivity
     Date date1 = new Date();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private String date = dateFormat.format(date1);
-
+    private AutoCompleteTextView mDestinationSearchText;
     private HikeListAdapter mAdapter;
     private DatabaseReference mDatabaseRefrence;
     private ListView mHikeListView;
@@ -41,6 +43,7 @@ public class UserRiderActivity extends BaseActivity
 
         mDatabaseRefrence= FirebaseDatabase.getInstance().getReference();
         mHikeListView=findViewById(R.id.hike_list_view);
+        mDestinationSearchText=(AutoCompleteTextView)findViewById(R.id.rider_destination);
 //        mHikeListView=(ListView) findViewById(R.id.hike_list_view);
         //mSingleHikeContainer=(LinearLayout)findViewById(R.id.singleHikeInfoContainer);
 
@@ -86,8 +89,6 @@ public class UserRiderActivity extends BaseActivity
     public void onStart()
     {
         super.onStart();
-        mAdapter=new HikeListAdapter(this,mDatabaseRefrence);
-        mHikeListView.setAdapter(mAdapter);
 
     }
 
@@ -97,6 +98,25 @@ public class UserRiderActivity extends BaseActivity
         super.onStop();
         mAdapter.cleanUp();
         // TODO: Remove the Firebase event listener on the adapter.
+
+    }
+    public void searchDestination(View v)
+    {
+        String destination=mDestinationSearchText.getText().toString();
+        if(destination=="")
+        {
+            new AlertDialog.Builder(this)
+                    .setTitle("Waoh")
+                    .setMessage("Enter Something to Search!")
+                    .setPositiveButton(android.R.string.ok,null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else
+        {
+            mAdapter = new HikeListAdapter(this, mDatabaseRefrence,destination);
+            mHikeListView.setAdapter(mAdapter);
+        }
 
     }
 

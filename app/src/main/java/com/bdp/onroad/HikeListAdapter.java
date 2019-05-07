@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +21,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HikeListAdapter extends BaseAdapter
 {
+    Date date1 = new Date();
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private String date = dateFormat.format(date1);
     private Activity mActivity;
     private DatabaseReference mDatabaseReference;
 
@@ -64,10 +71,10 @@ public class HikeListAdapter extends BaseAdapter
     };
 
     // Let us make some constructor!!!!!
-    public HikeListAdapter(Activity activity, DatabaseReference ref)
+    public HikeListAdapter(Activity activity, DatabaseReference ref, String destination)
     {
         mActivity=activity;
-        mDatabaseReference=ref.child("Hike");
+        mDatabaseReference=ref.child("Hikes").child(date).child(alterToMakeFBPath(destination.replaceAll("\\s+","").toLowerCase()));
         mDatabaseReference.addChildEventListener(mChildEventListener);
         mSnapShotList= new ArrayList<>();
     }
@@ -150,6 +157,22 @@ public class HikeListAdapter extends BaseAdapter
 
         return convertView;
     }
+    private String alterToMakeFBPath(String str)
+    {
+        Log.d("hey","got here");
+        String ret="";
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)=='.'||str.charAt(i)=='#'||str.charAt(i)=='$'||str.charAt(i)=='['||str.charAt(i)==']')
+                ret+='_';
+
+            else
+                ret+=str.charAt(i);
+
+        }
+        return ret;
+    }
+
 
     private void setChatRowAppearance(ViewHolder holder)
     {
