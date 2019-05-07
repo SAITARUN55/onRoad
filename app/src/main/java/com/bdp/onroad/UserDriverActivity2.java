@@ -30,19 +30,26 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class UserDriverActivity2 extends BaseActivity
 {
-
     private HitchListAdapter mAdapter;
     private DatabaseReference mDatabaseRefrence;
     private ListView mHitchListView;
+    private String destination;
     // private LinearLayout mSingleHikeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        destination=extras.getString("destination");
+
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //inflate your activity layout here!
         View contentView = inflater.inflate(R.layout.activity_user_driver_2, null, false);
@@ -80,7 +87,9 @@ public class UserDriverActivity2 extends BaseActivity
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        deleteRequest();
+                        Intent intent = new Intent(UserDriverActivity2.this, UserTypeActivity.class);
+                        startActivity(intent);
                         finish();
                     }
                 });
@@ -94,4 +103,31 @@ public class UserDriverActivity2 extends BaseActivity
         dialog.show();
     }
 
+    public void deleteRequest(){
+        Date date1 = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date2 = dateFormat.format(date1);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email=user.getEmail();
+
+        mDatabaseRefrence.child("Hikes").child(date2).child(alterToMakeFBPath(destination.replaceAll("\\s+","").toLowerCase())).child(alterToMakeFBPath(email)).removeValue();
+        return;
+    }
+
+
+    private String alterToMakeFBPath(String str)
+    {
+        Log.d("hey","got here");
+        String ret="";
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)=='.'||str.charAt(i)=='#'||str.charAt(i)=='$'||str.charAt(i)=='['||str.charAt(i)==']')
+                ret+='_';
+
+            else
+                ret+=str.charAt(i);
+        }
+        return ret;
+    }
 }

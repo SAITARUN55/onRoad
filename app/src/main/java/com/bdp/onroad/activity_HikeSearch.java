@@ -22,12 +22,8 @@ public class activity_HikeSearch extends BaseActivity {
         View contentView = inflater.inflate(R.layout.activity_hike_search, null, false);
         dl.addView(contentView, 0);
 
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapp);
-//        mapFragment.getMapAsync(this);
-
         // NEW FROM HERE!!!
         des1= findViewById(R.id.rider_destination);
-
 
     }
 
