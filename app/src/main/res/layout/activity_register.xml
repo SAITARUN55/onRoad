@@ -23,6 +23,7 @@
         android:textSize="40sp"
         tools:text="Welcome to onRoad!" />
 
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
@@ -41,6 +42,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_username"
+            android:imeOptions="actionNext"
+            android:inputType="textNoSuggestions"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/white"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/common_google_signin_btn_text_light">
+
+        <AutoCompleteTextView
+            android:id="@+id/register_userContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Your Contact Number"
             android:imeOptions="actionNext"
             android:inputType="textNoSuggestions"
             android:maxLines="1"

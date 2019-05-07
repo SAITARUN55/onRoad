@@ -23,6 +23,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends AppCompatActivity
@@ -36,8 +38,10 @@ public class RegisterActivity extends AppCompatActivity
 
     private AutoCompleteTextView mEmailView;
     private AutoCompleteTextView mUsernameView;
+    private AutoCompleteTextView mUserContactNumberView;
     private EditText mPasswordView;
     private EditText mConfirmPasswordView;
+    private DatabaseReference mDatabaseRefrence;
 
     // Firebase instance variables
     private FirebaseAuth mAuth;
@@ -54,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity
         mPasswordView = (EditText) findViewById(R.id.register_password);
         mConfirmPasswordView = (EditText) findViewById(R.id.register_confirm_password);
         mUsernameView = (AutoCompleteTextView) findViewById(R.id.register_username);
+        mUserContactNumberView=(AutoCompleteTextView)findViewById(R.id.register_userContactNumber);
 
         // Keyboard sign in action
         mConfirmPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -155,10 +160,9 @@ public class RegisterActivity extends AppCompatActivity
                 else
                 {
                     //saveDisplayNameLocally();
-                    saveDisplayNameOnDataBase();
+                    saveUserInfoOnDataBase();
                     Intent intnt = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intnt);
-                    onBackPressed();
                     finish();
                 }
             }
@@ -173,7 +177,7 @@ public class RegisterActivity extends AppCompatActivity
         pref.edit().putString(DISPLAY_NAME_KEY,DispName).apply();
 
     }
-    private void saveDisplayNameOnDataBase()
+    private void saveUserInfoOnDataBase()
     {
         FirebaseUser user = mAuth.getCurrentUser();
         String name=mUsernameView.getText().toString();
@@ -193,6 +197,10 @@ public class RegisterActivity extends AppCompatActivity
                     });
         }
 
+        mDatabaseRefrence= FirebaseDatabase.getInstance().getReference();
+        User newuser = new User(mUsernameView.getText().toString(),mEmailView.getText().toString(),mUserContactNumberView.getText().toString());
+        mDatabaseRefrence.child("Users").child(alterToMakeFBPath(mEmailView.getText().toString())).setValue(newuser);
+
 
     }
 
@@ -206,6 +214,21 @@ public class RegisterActivity extends AppCompatActivity
                 .setPositiveButton(android.R.string.ok,null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+    private String alterToMakeFBPath(String str)
+    {
+        Log.d("hey","got here");
+        String ret="";
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)=='.'||str.charAt(i)=='#'||str.charAt(i)=='$'||str.charAt(i)=='['||str.charAt(i)==']')
+                ret+='_';
+
+            else
+                ret+=str.charAt(i);
+
+        }
+        return ret;
     }
 
     public void SignInUser(View v)

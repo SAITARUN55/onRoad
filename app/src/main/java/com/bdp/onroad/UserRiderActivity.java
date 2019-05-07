@@ -3,6 +3,7 @@ package com.bdp.onroad;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,8 +14,11 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,6 +27,7 @@ import java.util.Date;
 
 public class UserRiderActivity extends BaseActivity
 {
+    String mContact_Number;
     Date date1 = new Date();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private String date = dateFormat.format(date1);
@@ -64,8 +69,27 @@ public class UserRiderActivity extends BaseActivity
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String name = user.getDisplayName();
                 String email= user.getEmail();
-                String ContactNumber="SOME PHONE NUMBER";
-                Hitch myNewHitch= new Hitch(name,email,ContactNumber,hike.getmDriverEmail());
+//                String mContact_Number;
+                DatabaseReference db=FirebaseDatabase.getInstance().getReference();
+
+                db=db.child("Users").child(alterToMakeFBPath(email)).child("mContactNumber");
+                db.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        mContact_Number=dataSnapshot.getValue(String.class);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError)
+                    {
+
+                    }
+                });
+
+                Hitch myNewHitch= new Hitch(name,email,mContact_Number,hike.getmDriverEmail());
+
                 mDatabaseRefrence.child("Hitches").child(date).child(alterToMakeFBPath(hike.getmDriverEmail())).push().setValue(myNewHitch);
 
             }
