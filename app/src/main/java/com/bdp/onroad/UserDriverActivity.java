@@ -75,7 +75,7 @@ public class UserDriverActivity  extends BaseActivity//FragmentActivity implemen
             Hike myNewHike = new Hike(name,startingTime,startingPlace,destination,noOfSeats,contactNumber,email);
             Log.d("hey","The destination you pushed:"+destination.replaceAll("\\s+","").toLowerCase());
 
-            mDatabaseRefrence.child("Hikes").child(date).child(alterToMakeFBPath(destination.replaceAll("\\s+","").toLowerCase())).child(alterToMakeFBPath(email)).push().setValue(myNewHike);
+            mDatabaseRefrence.child("Hikes").child(date).child(alterToMakeFBPath(destination.replaceAll("\\s+","").toLowerCase())).push().setValue(myNewHike);
 
             // switching to userdriver activity 2
             //TODO: add if push not successful error case!!!!!!!!!!!!!!!!!!!!!!
