@@ -57,7 +57,6 @@ public class BaseActivity extends AppCompatActivity {
                         Intent I = new Intent(BaseActivity.this, UserTypeActivity.class);
                         startActivity(I);
                         finish();
-                        Toast.makeText(BaseActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_aboutUs:
                         Toast.makeText(BaseActivity.this, "About Us", Toast.LENGTH_SHORT).show();
@@ -66,12 +65,12 @@ public class BaseActivity extends AppCompatActivity {
                         Toast.makeText(BaseActivity.this, "Profile", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_rides:
-                        startActivity(new Intent(BaseActivity.this, UserRiderActivity.class));
+                        startActivity(new Intent(BaseActivity.this, activity_HikeSearch.class));
                         finish();
-                        Toast.makeText(BaseActivity.this, "Rides Available", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_ridereqs:
-                        Toast.makeText(BaseActivity.this, "RideRequesta", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(BaseActivity.this, UserDriverActivity.class));
+                        finish();
                         break;
                     case R.id.nav_logout:
                         FirebaseAuth.getInstance().signOut();
