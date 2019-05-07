@@ -30,6 +30,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class UserDriverActivity2 extends BaseActivity
 {
@@ -80,7 +84,7 @@ public class UserDriverActivity2 extends BaseActivity
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        deleteRequest();
                         finish();
                     }
                 });
@@ -94,4 +98,11 @@ public class UserDriverActivity2 extends BaseActivity
         dialog.show();
     }
 
+    public void deleteRequest(){
+        Date date1 = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date2 = dateFormat.format(date1);
+
+
+    }
 }
