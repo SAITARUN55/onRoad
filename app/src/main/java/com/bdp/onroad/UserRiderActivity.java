@@ -66,7 +66,7 @@ public class UserRiderActivity extends BaseActivity
                 String email= user.getEmail();
                 String ContactNumber="SOME PHONE NUMBER";
                 Hitch myNewHitch= new Hitch(name,email,ContactNumber,hike.getmDriverEmail());
-                mDatabaseRefrence.child(date).child("Hitches").child(ContactNumber).push().setValue(myNewHitch);
+                mDatabaseRefrence.child("Hitches").child(date).child(alterToMakeFBPath(hike.getmDriverEmail())).push().setValue(myNewHitch);
 
             }
         });

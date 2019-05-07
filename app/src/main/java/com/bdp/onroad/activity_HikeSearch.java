@@ -19,7 +19,7 @@ public class activity_HikeSearch extends BaseActivity {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //inflate your activity layout here!
-        View contentView = inflater.inflate(R.layout.activity_user_driver, null, false);
+        View contentView = inflater.inflate(R.layout.activity_hike_search, null, false);
         dl.addView(contentView, 0);
 
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapp);

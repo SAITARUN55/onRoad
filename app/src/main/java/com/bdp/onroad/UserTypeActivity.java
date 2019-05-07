@@ -76,7 +76,7 @@ public class UserTypeActivity extends BaseActivity {
 
     public void setUserRider(View V)
     {
-        Intent intnt = new Intent(UserTypeActivity.this, UserRiderActivity.class);
+        Intent intnt = new Intent(UserTypeActivity.this, activity_HikeSearch.class);
         startActivity(intnt);
         finish();
         Log.d("hey","User is Rider") ;
