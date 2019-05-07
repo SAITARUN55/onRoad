@@ -55,7 +55,6 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         Intent I = new Intent(BaseActivity.this, UserTypeActivity.class);
                         startActivity(I);
-                        onBackPressed();
                         finish();
                         Toast.makeText(BaseActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         break;
@@ -67,7 +66,6 @@ public class BaseActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_rides:
                         startActivity(new Intent(BaseActivity.this, UserRiderActivity.class));
-                        onBackPressed();
                         finish();
                         Toast.makeText(BaseActivity.this, "Rides Available", Toast.LENGTH_SHORT).show();
                         break;
@@ -77,7 +75,6 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.nav_logout:
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(BaseActivity.this, LoginActivity.class));
-                        onBackPressed();
                         finish();
                         Toast.makeText(BaseActivity.this, "Logged You Out", Toast.LENGTH_SHORT).show();
                         break;
