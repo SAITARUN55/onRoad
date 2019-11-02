@@ -115,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     onBackPressed();
                     finish();
+                    showDialogueSignedUp();
                 }
             }
         });
@@ -133,5 +134,9 @@ public class LoginActivity extends AppCompatActivity {
                 .show();
     }
 
+    private void showDialogueSignedUp()
+    {
+        Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show();
+    }
 
 }
