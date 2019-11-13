@@ -27,7 +27,6 @@ Aim of the app is to provide rides to passengers in private or public cars at re
 * Clone the repository  
   `git clone https://github.com/<username>/onRoad.git`   
   where \< username \> is your username in your bash
-* Follow the steps as following in the bash
 
 
 ## Contributions 
