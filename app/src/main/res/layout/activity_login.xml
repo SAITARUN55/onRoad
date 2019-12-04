@@ -11,7 +11,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/dancing_script_bold"
         android:gravity="center|center_horizontal|top|center_vertical"
         android:text="@string/loginText"
         android:textColor="#B9BBBD"
