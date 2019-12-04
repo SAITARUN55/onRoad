@@ -2,29 +2,76 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <AutoCompleteTextView
-        android:id="@+id/rider_destination"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="229dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <AutoCompleteTextView
+            android:id="@+id/pickPoint_destination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15sp"
+            android:hint="PICK FROM"
+            android:inputType="textNoSuggestions"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:backgroundTint="@color/black"
+            android:textStyle="bold"
+
+            />
+
+        <AutoCompleteTextView
+            android:id="@+id/rider_destination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15sp"
+            android:hint="DROP POINT"
+            android:inputType="textNoSuggestions"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:backgroundTint="@color/black"
+            android:textColorHighlight="@color/black"/>
+
+        <Button
+            android:id="@+id/search_Hike_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/logingrey"
+            android:onClick="searchDestination"
+            android:text="Search"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search where you'd want to go!"
-        android:inputType="textNoSuggestions"
-        android:maxLines="1"
-        android:textColor="@color/black"
-        android:textColorHint="@color/white"
-        android:textIsSelectable="false"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/search_Hike_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:background="@color/logingrey"
-        android:onClick="searchDestination"
-        android:text="Search"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
+
+
+    </LinearLayout>
+
 </LinearLayout>
