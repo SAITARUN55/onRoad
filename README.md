@@ -34,6 +34,9 @@ Aim of the app is to provide rides to passengers in private or public cars at re
 * Contributors are welcome and please comment on the issue before working on it.
 * Create pull requests, submit bugs, suggest new features.
 * Join the Gitter Channel for queries and other related stuff.
+* Add your app to firebase. The steps can be found [here](https://firebase.google.com/docs/database/android/start)
+* In the second step you will be prompted to download ```google-services.json```. Replace the ```google-services.json``` in the current directory with the new downloaded file. 
+
 
 gitter Channel : https://gitter.im/On-Road/community
 
