@@ -59,7 +59,9 @@ public class BaseActivity extends AppCompatActivity {
                         finish();
                         break;
                     case R.id.nav_aboutUs:
-                        Toast.makeText(BaseActivity.this, "About Us", Toast.LENGTH_SHORT).show();
+                        Intent in = new Intent(BaseActivity.this, AboutUs.class);
+                        startActivity(in);
+                        finish();
                         break;
                     case R.id.nav_profile:
                         Toast.makeText(BaseActivity.this, "Profile", Toast.LENGTH_SHORT).show();
