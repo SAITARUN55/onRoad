@@ -18,7 +18,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-
+    <string name="about_content">"Here you can find and share rides thereby reducing cost and pollution.We aim to provide rides to passengers in private or public cars at reduced costs depending on the availability"</string>
+    
     <string name="show_pwd">Show Password</string>
     <string name="hide_pwd">Hide Password</string>
 
