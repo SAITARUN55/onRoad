@@ -19,7 +19,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -49,10 +48,9 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.login_email);
-        mPasswordView = (EditText) findViewById(R.id.login_password);
-        show_hide_password = (CheckBox) findViewById(R.id.checkBox);
+        mEmailView = findViewById(R.id.login_email);
+        mPasswordView = findViewById(R.id.login_password);
+        show_hide_password = findViewById(R.id.checkBox);
 
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -93,9 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Executed when Sign in button pressed
     public void signInExistingUser(View v) {
-
         attemptLogin();
-
     }
 
     // Executed when Register button pressed
@@ -113,11 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (email.equals("") || pass.equals(""))
             return;
-
-
-        Toast.makeText(this, "SignIn in Progress", Toast.LENGTH_SHORT).show();
-
-
+        Toast.makeText(this, "SignIn in Progress", Toast.LENGTH_LONG).show();
         mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -127,12 +119,13 @@ public class LoginActivity extends AppCompatActivity {
                     showDialogue("SignIn not Successful");
                 } else {
                     Log.d("hey", "SignedIn Successfully");
-                    Intent intnt = new Intent(LoginActivity.this, UserTypeActivity.class);
-                    startActivity(intnt);
-
-                    onBackPressed();
-                    finish();
-                    showDialogueSignedUp();
+                   if(mAuth.getCurrentUser().isEmailVerified()){
+                       Intent intent = new Intent(LoginActivity.this, UserTypeActivity.class);
+                       showDialogueSignedUp();
+                       startActivity(intent);
+                   } else{
+                           Toast.makeText(LoginActivity.this, "Please get your email Address Verified!!", Toast.LENGTH_LONG).show();
+                           }
                 }
             }
         });
@@ -151,7 +144,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showDialogueSignedUp()
     {
-        Toast.makeText(this,"Signed in successfully",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Signed in successfully",Toast.LENGTH_LONG).show();
     }
-
 }
