@@ -71,8 +71,7 @@ public class BaseActivity extends AppCompatActivity {
                         finish();
                         break;
                     case R.id.nav_aboutUs:
-                        Intent in = new Intent(BaseActivity.this, AboutUs.class);
-                        startActivity(in);
+                        startActivity(new Intent(BaseActivity.this, AboutUs.class));
                         finish();
                         break;
                     case R.id.nav_profile:
